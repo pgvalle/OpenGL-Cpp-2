@@ -1,3 +1,4 @@
+/* This file was taken from the "glfw: getting started" page */
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
  
