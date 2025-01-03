@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# command exists
 command_exists() {
     if ! command -v "$1" >/dev/null 2>&1; then
         echo "$1 is not installed. Please install it and try again."
@@ -9,21 +8,21 @@ command_exists() {
 }
 command_exists git
 
-# is this a repo?
+# is this a git repo?
 if [ ! -d ".git" ]; then
     echo "This directory is not a git repository."
     exit 1
 fi
 
-# submodules
+# are submodules updated?
 if [ ! -d ".git/modules" ]; then
     echo -e "\n================= Initializing =================== and updating submodules"
-    git submodule update --init --recursive
+    git submodule update --init --recursive --force
 fi
 
 command_exists cmake
 
-# already configured
+# are submodules configured?
 if [ ! -f "build/Makefile" ]; then
     echo -e "\n================= Configuring ==================="
     mkdir build
@@ -38,5 +37,5 @@ cd build
 cmake --build .
 cd ..
 
-echo -e "\nNOTE: If the build failed, check if you have xorg/wayland dev packages installed."
+echo -e "\nNOTE: Don't forget to install xorg/wayland dev packages."
 echo "================= Done ==================="
