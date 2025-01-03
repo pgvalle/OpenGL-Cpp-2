@@ -17,5 +17,5 @@ set(GLFW_BUILD_TESTS off)
 set(GLFW_BUILD_DOCS off)
 
 add_subdirectory(${GLFW_DIR})
-target_link_libraries(${EXEC} PRIVATE glfw GL)
+target_link_libraries(${EXEC} PRIVATE glfw)
 target_include_directories(${EXEC} PRIVATE ${GLFW_DIR}/include)
