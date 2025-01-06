@@ -48,5 +48,5 @@ echo ================= Building ===================
 cmake --build .
 
 echo ================= Done ===================
-echo USAGE: .\platform\build.bat generator_in_quotes_or_double_quotes
+echo USAGE: .\platform\build.bat generator_in_double_quotes
 echo NOTE: Run cmake --help for more info on available generators.
