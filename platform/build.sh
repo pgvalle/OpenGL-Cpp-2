@@ -15,27 +15,24 @@ if [ ! -d ".git" ]; then
 fi
 
 # are submodules updated?
-if [ ! -d ".git/modules" ]; then
-    echo -e "\n================= Initializing =================== and updating submodules"
-    git submodule update --init --recursive --force
-fi
+echo "================= Initializing ==================="
+git submodule foreach "git reset --hard"
+git submodule update --init --recursive
 
 command_exists cmake
 
-# are submodules configured?
+mkdir -p build
+cd build
+
+# Is the project configured?
 if [ ! -f "build/Makefile" ]; then
-    echo -e "\n================= Configuring ==================="
-    mkdir build
-    cd build
+    echo "================= Configuring ==================="
     cmake ..
-    cd ..
 fi
 
 # build
-echo -e "\n================= Building ==================="
-cd build
+echo "================= Building ==================="
 cmake --build .
-cd ..
 
-echo -e "\nNOTE: Don't forget to install xorg/wayland dev packages."
 echo "================= Done ==================="
+echo "NOTE: Don't forget to install xorg/wayland dev packages."

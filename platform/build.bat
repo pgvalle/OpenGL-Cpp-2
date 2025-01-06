@@ -4,7 +4,7 @@ setlocal
 :: Skip function (it's a label so don't execute it now)
 goto :script
 
-:: Check if a command exists
+:: Function to check if a command exists
 :command_exists
   where %1 >nul 2>nul
   if errorlevel 1 (
@@ -25,33 +25,28 @@ if not exist ".git" (
 )
 
 :: Are submodules updated?
-if not exist ".git\modules" (
-  echo.
-  echo ================= Initializing ===================
-  echo Updating submodules
-  git submodule update --init --recursive --force
-)
+echo ================= Initializing ===================
+git submodule foreach "git reset --hard"
+git submodule update --init --recursive
 
 call :command_exists cmake
 
-:: Are submodules configured?
-if not exist "build\Makefile" (
-  echo.
-  echo ================= Configuring ===================
+if not exist "build" (
   mkdir build
-  cd build
+)
+
+cd build
+
+:: Is project configured
+if not exist "build\Makefile" (
+  echo ================= Configuring ===================
   cmake .. -G %*
-  cd ..
 )
 
 :: Build
-echo.
 echo ================= Building ===================
-cd build
 cmake --build .
-cd ..
 
-echo.
-echo NOTE: Don't forget to pass a cmake generator as argument to this script
-echo See cmake --help for more info
 echo ================= Done ===================
+echo USAGE: .\platform\build.bat generator_in_quotes_or_double_quotes
+echo NOTE: Run cmake --help for more info on available generators.
