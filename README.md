@@ -8,9 +8,9 @@
 
 ## Building
 1. Make sure you have both cmake and git installled.
-2. Open a terminal/cmd and move to the root directory.
-3. Go to `platform/` and execute the script depending on your os  
-4. You should be able to see and run an executable called **executable** inside a new directory called build.
+2. Open a terminal/cmd and cd to the root directory.
+3. Run `$ ./platform/{platform_specific_script}`
+4. You should see and be able to run an executable called **executable** inside a new directory called build.
 
 ## PLEASE READ THIS
 Jesus loves you and wants to protect us, help us, bring happiness to us and save us from hell.
