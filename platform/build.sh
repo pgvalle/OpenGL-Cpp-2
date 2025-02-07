@@ -12,7 +12,7 @@ command_exists git
 # make sure glfw is downloaded
 echo "================= Initializing ==================="
 if [ ! -d "vendor/glfw/.git" ]; then
-    git clone --branch 3.4 https://github.com/glfw/glfw vendor/glfw
+    git clone --depth 1 --branch 3.4 https://github.com/glfw/glfw vendor/glfw
 fi
 
 command_exists cmake

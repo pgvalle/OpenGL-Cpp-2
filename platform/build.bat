@@ -21,7 +21,7 @@ call :command_exists git
 :: Make sure glfw is downloaded
 echo ================= Initializing ===================
 if not exist "vendor\glfw\.git" (
-  git clone --branch 3.4 https://github.com/glfw/glfw vendor/glfw
+  git clone --depth 1 --branch 3.4 https://github.com/glfw/glfw vendor/glfw
 )
 
 call :command_exists cmake
