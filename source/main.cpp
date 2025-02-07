@@ -1,12 +1,11 @@
-/* This file was taken from the "glfw: getting started" page */
+/* This file was taken from the glfw getting started page and modified a little bit */
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
- 
-#include "linmath.h"
- 
-#include <stdlib.h>
-#include <stdio.h>
- 
+
+#include <glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <gtc/matrix_transform.hpp>
+
 static const struct
 {
     float x, y;
@@ -38,40 +37,19 @@ static const char* fragment_shader_text =
 "    gl_FragColor = vec4(color, 1.0);\n"
 "}\n";
 
-static void error_callback(int error, const char* description)
-{
-    fprintf(stderr, "Error: %s\n", description);
-}
- 
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
-}
-
-int main()
-{
+int main() {
     GLFWwindow* window;
     GLuint vertex_buffer, vertex_shader, fragment_shader, program;
     GLint mvp_location, vpos_location, vcol_location;
- 
-    glfwSetErrorCallback(error_callback);
- 
-    if (!glfwInit())
-        exit(EXIT_FAILURE);
+
+    assert(glfwInit());
 
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
  
     window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        exit(EXIT_FAILURE);
-    }
- 
-    glfwSetKeyCallback(window, key_callback);
+    assert(window);
  
     glfwMakeContextCurrent(window);
     gladLoadGL(glfwGetProcAddress);
@@ -111,7 +89,7 @@ int main()
     {
         float ratio;
         int width, height;
-        mat4x4 m, p, mvp;
+        glm::mat4 m, p, mvp;
  
         glfwGetFramebufferSize(window, &width, &height);
         ratio = width / (float) height;
@@ -119,13 +97,13 @@ int main()
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT);
  
-        mat4x4_identity(m);
-        mat4x4_rotate_Z(m, m, (float) glfwGetTime());
-        mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-        mat4x4_mul(mvp, p, m);
+        m = glm::mat4(1);
+        m = glm::rotate(m, (float) glfwGetTime(), glm::vec3(0, 0, 1));
+        p = glm::ortho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
+        mvp = p * m;
  
         glUseProgram(program);
-        glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
+        glUniformMatrix4fv(mvp_location, 1, GL_FALSE, glm::value_ptr(mvp));
         glDrawArrays(GL_TRIANGLES, 0, 3);
  
         glfwSwapBuffers(window);
