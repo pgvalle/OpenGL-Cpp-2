@@ -15,6 +15,10 @@ if [ ! -d "vendor/glfw/.git" ]; then
     git clone --depth 1 --branch 3.4 https://github.com/glfw/glfw vendor/glfw
 fi
 
+if [ ! -d "vendor/glm/.git" ]; then
+    git clone --depth 1 --branch 1.0.1 https://github.com/g-truc/glm vendor/glm
+fi
+
 command_exists cmake
 
 # Is the project configured?

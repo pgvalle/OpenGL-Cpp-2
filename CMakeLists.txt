@@ -17,5 +17,13 @@ set(GLFW_BUILD_TESTS off)
 set(GLFW_BUILD_DOCS off)
 
 add_subdirectory(${GLFW_DIR})
-target_link_libraries(${EXEC} PRIVATE glfw)
 target_include_directories(${EXEC} PRIVATE ${GLFW_DIR}/include)
+target_link_libraries(${EXEC} PRIVATE glfw)
+
+######### GLM ############
+
+set(GLM_DIR ${CMAKE_SOURCE_DIR}/vendor/glm)
+
+add_subdirectory(${GLM_DIR})
+target_include_directories(${EXEC} PRIVATE ${GLM_DIR}/glm)
+target_link_libraries(${EXEC} PRIVATE glm)

@@ -1,15 +1,15 @@
 # C++ OpenGL Project Template 2
 
-## Components (inside vendor folder)
-1. [OpenGL](https://www.opengl.org/) (Obviously)
-2. [GLFW](https://github.com/glfw/glfw) (abstracts window handling, mouse, keyboard and etc...)
-3. [linmath](https://github.com/datenwolf/linmath.h) (linear algebra)
-4. [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h) (image loading)
+## Components
+* [opengl](https://www.opengl.org/)
+* [glfw 3.4](https://github.com/glfw/glfw) - Window creation and access to peripherals
+* [glm 1.0.1](https://github.com/g-truc/glm) - Linear algebra
+* [stb_image 2.30](https://github.com/nothings/stb/blob/master/stb_image.h) - Image loading
 
 ## Building
 1. Make sure you have both cmake and git installled.
 2. Open a terminal/cmd and cd to the root directory.
-3. Run `$ ./platform/{platform_specific_script}`
+3. Run your platform specific build script.
 4. You should see and be able to run an executable called **executable** inside a new directory called build.
 
 ## PLEASE READ THIS

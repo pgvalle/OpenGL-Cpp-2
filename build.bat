@@ -24,6 +24,10 @@ if not exist "vendor\glfw\.git" (
   git clone --depth 1 --branch 3.4 https://github.com/glfw/glfw vendor/glfw
 )
 
+if not exist "vendor\glm\.git" (
+  git clone --depth 1 --branch 1.0.1 https://github.com/g-truc/glm vendor/glm
+)
+
 call :command_exists cmake
 
 if not exist "build" (
