@@ -21,13 +21,9 @@ fi
 
 command_exists cmake
 
-# Is the project configured?
-if [ ! -f "build/Makefile" ]; then
-    echo "================= Configuring ==================="
-    cmake -B build
-fi
+echo "================= Configuring ==================="
+cmake -S . -B build
 
-# build
 echo "================= Building ==================="
 cmake --build build
 
