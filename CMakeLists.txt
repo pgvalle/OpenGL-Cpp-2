@@ -6,7 +6,7 @@ set(BUILD_SHARED_LIBS off)
 
 include_directories(${CMAKE_SOURCE_DIR}/vendor)
 
-file(GLOB SOURCES source/*.cpp)
+file(GLOB_RECURSE SOURCES source/**.cpp)
 add_executable(${EXEC} ${SOURCES})
 
 ######### GLFW #########
