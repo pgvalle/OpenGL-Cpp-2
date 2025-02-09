@@ -4,14 +4,14 @@ project(Project)
 set(EXEC executable)
 set(BUILD_SHARED_LIBS off)
 
-include_directories(${CMAKE_SOURCE_DIR}/vendor)
+include_directories(vendor)
 
 file(GLOB_RECURSE SOURCES source/**.cpp)
 add_executable(${EXEC} ${SOURCES})
 
 ######### GLFW #########
 
-set(GLFW_DIR ${CMAKE_SOURCE_DIR}/vendor/glfw)
+set(GLFW_DIR vendor/glfw)
 set(GLFW_BUILD_EXAMPLES off)
 set(GLFW_BUILD_TESTS off)
 set(GLFW_BUILD_DOCS off)
@@ -22,8 +22,8 @@ target_link_libraries(${EXEC} PRIVATE glfw)
 
 ######### GLM ############
 
-set(GLM_DIR ${CMAKE_SOURCE_DIR}/vendor/glm)
+set(GLM_DIR vendor/glm)
 
 add_subdirectory(${GLM_DIR})
-target_include_directories(${EXEC} PRIVATE ${GLM_DIR}/glm)
+target_include_directories(${EXEC} PRIVATE ${GLM_DIR})
 target_link_libraries(${EXEC} PRIVATE glm)
