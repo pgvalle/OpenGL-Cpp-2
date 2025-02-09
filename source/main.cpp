@@ -2,9 +2,8 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
-#include <glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <gtc/matrix_transform.hpp>
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
 static const struct
 {
