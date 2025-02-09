@@ -30,17 +30,9 @@ if not exist "vendor\glm\.git" (
 
 call :command_exists cmake
 
-if not exist "build" (
-  mkdir build
-)
+echo ================= Configuring ===================
+cmake -G %* -B build
 
-:: Is project configured
-if not exist "build\Makefile" (
-  echo ================= Configuring ===================
-  cmake -G %* -B build
-)
-
-:: Build
 echo ================= Building ===================
 cmake --build build
 
